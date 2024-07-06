@@ -1,0 +1,4 @@
+name: catfacts
+version: '1.0-SNAPSHOT'
+main: com.adrianozuna.catfacts.Catfacts
+api-version: '1.21'

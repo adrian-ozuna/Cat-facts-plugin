@@ -1,0 +1,4 @@
+name: catfacts
+version: '${version}'
+main: com.adrianozuna.catfacts.Catfacts
+api-version: '1.21'
