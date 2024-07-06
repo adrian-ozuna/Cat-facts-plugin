@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,6 +17,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Catfacts extends JavaPlugin implements Listener {
 
@@ -55,14 +58,18 @@ public final class Catfacts extends JavaPlugin implements Listener {
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
-                Bukkit.broadcast(
-                        Component.text("< Mr. Katt > ")
-                                .color(TextColor.color(NamedTextColor.YELLOW))
-                                .append(
-                                        Component.text("Did you know that " + getFact())
-                                                .color(TextColor.color(NamedTextColor.WHITE))
-                                )
-            );
+                List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
+
+                if (!players.isEmpty()) {
+                    Bukkit.broadcast(
+                            Component.text("< Mr. Katt > ")
+                                    .color(TextColor.color(NamedTextColor.YELLOW))
+                                    .append(
+                                            Component.text("Did you know that " + getFact())
+                                                    .color(TextColor.color(NamedTextColor.WHITE))
+                                    )
+                    );
+                }
             }
         }, 0L, 18000L);
 
